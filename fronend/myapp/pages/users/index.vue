@@ -3,6 +3,7 @@
     <div class="nav">
       <h1>ผู้ใช้ทั้งหมด</h1>
       <nuxt-link tag="button" :to="'/users/add_user'">เพิ่มผู้ใช้งาน</nuxt-link>
+      <input type="search" placeholder="ค้นหา" v-model="search"/>
       <div class="input-group">
       </div>
     </div>
@@ -39,10 +40,25 @@ export default {
     Users
   },
   data() {
+    // console.log("search ", search)
       return {
-            users: null
+            users: null,
+            search: ""
         }
 
+  },
+  watch: {
+    search(value) {
+        axios.get(`http://localhost:8000/api/v1/`, {
+          params: {
+            search: value
+          }
+        })
+          .then(res => { 
+            this.users = res.data
+            console.log('users : ', this.users)
+      })  
+    },
   },
   mounted() {
     axios.get(`http://localhost:8000/api/v1/`)

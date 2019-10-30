@@ -53,7 +53,7 @@ export default {
   methods: {
     updateUser() {
       console.log('response files : ', this.users)
-      axios.put(`http://localhost:8000/api/v1/${this.users.id}/`,this.users)
+      axios.put(`http://localhost:8000/api/v1/user/${this.users.id}/`,this.users)
         .then(response => {
           console.log('response files : ', response)
           
@@ -71,7 +71,7 @@ export default {
     const type = checkType[0]
     const value = checkType[1]
     axios.get(
-      `http://localhost:8000/api/v1/${type}/${value}`
+      `http://localhost:8000/api/v1/user/${this.$route.params.id}`
     ).then(res => {
         this.users = res.data
         console.log("user", res.data)

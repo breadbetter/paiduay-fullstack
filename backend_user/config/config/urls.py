@@ -18,8 +18,8 @@ from django.urls import path, include
 from rest_framework import routers
 from api import views
 from django.conf.urls import url
-# router = routers.DefaultRouter()
-# router.register(r'api/v1', views.UserViewSet)
+router = routers.DefaultRouter()
+router.register(r'api/v1/user', views.UserView)
 # router.register(r'api/v1/id', views.UserId)
 # router.register(r'api/v1/firstname', views.UserFirstname)
 # router.register(r'api/v1/lastname', views.UserLastname)
@@ -28,16 +28,15 @@ from django.conf.urls import url
 # router.register(r'api/v1/age', views.UserAge)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include(router.urls)),
+    path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # path('<str:id>/', include(router.urls)),
+    path('<str:id>/', include(router.urls)),
     # path('<str:first_name>/', include(router.urls)),
     # path('<str:last_name>/', include(router.urls)),
     # path('<str:email>/', include(router.urls)),
     # path('<str:gender>/', include(router.urls)),
     # path('<str:age>/', include(router.urls)),
     path('api/v1/', views.UserViewSet.as_view()),
-    path('api/v1/age/<int:age>', views.UserId.as_view()),
     # path('api/v1/id/<int:pk>', views.UserDetail.as_view())
 
 ]

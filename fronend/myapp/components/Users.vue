@@ -4,7 +4,7 @@
         <div class="table-body">
             
             <div class="body">
-                <nuxt-link class="col" :to="'/users/id=' + id">  
+                <nuxt-link class="col" :to="'/users/' + id">  
                 <div class="col">{{id}}</div>
                 </nuxt-link>  
                 <nuxt-link class="col" :to="'/users/firstname=' + first_name"> 
