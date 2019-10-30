@@ -1,11 +1,19 @@
 <template>
   <div id="container">
     <div class="nav">
-      <h1>ผู้ใช้ทั้งหมด</h1>
-      <nuxt-link tag="button" :to="'/users/add_user'">เพิ่มผู้ใช้งาน</nuxt-link>
-      <input type="search" placeholder="ค้นหา" v-model="search"/>
-      <div class="input-group">
+      <div><h1>ผู้ใช้ทั้งหมด</h1> (หน้านี้เรียกข้อมูลจาก http://localhost:8000/api/v1/)</div>
+      <div>
+        <nuxt-link tag="button" :to="'/users/add_user'">เพิ่มผู้ใช้งาน</nuxt-link>
+        
+        <input
+          type="search"
+          class="searchInput"
+          placeholder="ค้นหา ไอดี, ชื่อ, นามสกุล, อีเมล์, เพศ, อายุ"
+          v-model="search"
+        />
+        <p>(ค้นหาข้อมูลจาก http://localhost:8000/api/v1/?search= )</p>
       </div>
+      
     </div>
     <div class="table-header">
       <div class="cell index">#</div>
@@ -16,23 +24,23 @@
       <div class="cell age">อายุ</div>
     </div>
     <Users
-        v-for="(user,index) in users"
-        :index="index+1"
-        :key="user.id"
-        :id="user.id"
-        :first_name="user.first_name"
-        :last_name="user.last_name"
-        :email="user.email"
-        :age="user.age"
-        :gender="user.gender"
-      />
+      v-for="(user,index) in users"
+      :index="index+1"
+      :key="user.id"
+      :id="user.id"
+      :first_name="user.first_name"
+      :last_name="user.last_name"
+      :email="user.email"
+      :age="user.age"
+      :gender="user.gender"
+    />
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from "~/components/Logo.vue";
 import APIList from "~/api/main.js";
-import axios from 'axios'
+import axios from "axios";
 import Users from "@/components/Users";
 export default {
   components: {
@@ -41,33 +49,32 @@ export default {
   },
   data() {
     // console.log("search ", search)
-      return {
-            users: null,
-            search: ""
-        }
-
+    return {
+      users: null,
+      search: ""
+    };
   },
   watch: {
     search(value) {
-        axios.get(`http://localhost:8000/api/v1/`, {
+      axios
+        .get(`http://localhost:8000/api/v1/`, {
           params: {
             search: value
           }
         })
-          .then(res => { 
-            this.users = res.data
-            console.log('users : ', this.users)
-      })  
-    },
+        .then(res => {
+          this.users = res.data;
+          console.log("users : ", this.users);
+        });
+    }
   },
   mounted() {
-    axios.get(`http://localhost:8000/api/v1/`)
-        .then(res => { this.users = res.data
-            console.log('users : ', this.users)
-  })
+    axios.get(`http://localhost:8000/api/v1/`).then(res => {
+      this.users = res.data;
+      console.log("users : ", this.users);
+    });
   }
-}
-
+};
 </script>
 
 
@@ -75,7 +82,22 @@ export default {
 @import "@/styles/_mixins.scss";
 #container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+  .searchInput {
+    appearance: none;
+    width: 320px;
+    outline: none;
+    border: 1px solid $border;
+    padding: 8px 8px;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+      border-color: $accent;
+    }
+  }
   .nav {
     display: flex;
     justify-content: space-between;
@@ -90,17 +112,23 @@ export default {
     .input-group {
       display: flex;
     }
-    .button-wrapper {
-      width: 100%;
-      button {
-      background-color: $primary;
-        
+    button {
+      padding: 4px 32px;
+      height: 34px;
+      background-color: $accent;
+      outline: none;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s ease-out;
       &:hover {
-        background-color: shade($primary, 50%);
+        background-color: shade(rgba(255, 173, 51, 0.726), 5%);
       }
+
+      &:hover {
+        background-color: shade(rgba(255, 173, 51, 0.726), 30%);
       }
     }
-    
   }
 }
 .table-header {
@@ -114,5 +142,4 @@ export default {
     font-weight: normal;
   }
 }
-
 </style>

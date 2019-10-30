@@ -10,7 +10,7 @@ from rest_framework import filters
 class UserViewSet(generics.ListCreateAPIView):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
-    search_fields = ['first_name','last_name','email','gender','age']
+    search_fields = ['id','first_name','last_name','email','gender','age']
     filter_backends = (filters.SearchFilter,)
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
