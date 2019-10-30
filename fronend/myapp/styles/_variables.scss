@@ -1,0 +1,24 @@
+//function
+@function tint($color,$percentage) {
+    @return mix( white, $color, $percentage )
+};
+@function shade($color,$percentage) {
+    @return mix( black, $color, $percentage )
+};
+
+//Theme
+$primary: #575855;
+$accent: #efb758;
+$disable: #dadada;
+$white: #fff;
+//image background
+$img-bg: #f7f8f9;
+//Border
+$border: #b1b1b2;
+//Text
+$font-family: 'Prompt', sans-serif;
+//Text Color
+$text-color: #000;
+$subtext-color: #b1b1b2;
+$box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+$hover-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);

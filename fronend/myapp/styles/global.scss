@@ -1,0 +1,114 @@
+//css for every website
+@import 'variables';
+@import 'mixins';
+
+html, body {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    @include body-text;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1 {
+    @include heading-text;
+    font-size: 2.25em;
+}
+
+h2 {
+    @include heading-text;
+    font-size: 2em;
+}
+
+h3 {
+    @include heading-text;
+    font-size: 1.75em;
+}
+
+h4 {
+    @include heading-text;
+    font-size: 1.5em;
+}
+
+h5 {
+    @include heading-text;
+    font-size: 1.125em;
+}
+
+h6 {
+    @include heading-text;
+    font-size: 0.875em;
+}
+
+button {
+    @include button;
+}
+input {
+    @include input;
+}
+.modal-content {
+    padding: 16px;
+}
+//Search Input
+//<div class="search-wrapper">
+//     <input type="search" class="search" placeholder="ค้นหา">
+//     <i class="material-icons">search</i>
+// </div>
+.search-wrapper {
+    position: relative;
+    width: 200px;
+    margin-left: 8px;
+    input {
+        @include input;
+        padding-right: 32px;
+        &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+    }
+    i {
+        color: $border;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        cursor: pointer;
+    }
+}
+
+.date-wrapper {
+    width: 200px;
+    margin-left: 8px;
+    //override artisan-component <a-select />
+    @include date-picker-override;
+}
+
+.filter-wrapper {
+    width: 200px;
+    margin-left: 8px;
+    //override artisan-component <a-select />
+    @include select-override;
+}
+
+a {
+    @include body-text;
+    text-decoration: none;
+    color: $text-color;
+    cursor: pointer;
+    &:hover {
+        color: $accent;
+    }
+}
+.index:not(.cell) {
+    color: $accent;
+    font-size: 12px;
+    margin:0 4px;
+}
+

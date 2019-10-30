@@ -1,0 +1,176 @@
+@import 'variables';
+@import 'responsive';
+//Text format
+@mixin body-text {
+    font: {
+        family: $font-family;
+        size: 14px;
+        weight: 300;
+    }
+    color: $text-color;
+}
+
+@mixin heading-text {
+    font: {
+        family: $font-family;
+        size: 16px;
+        weight: 400;
+    }
+    color: $text-color;
+}
+
+@mixin subtitle-text {
+    font: {
+        family: $font-family;
+        size: 14px;
+        weight: 400;
+    }
+    color: $text-color;
+}
+
+@mixin caption-text {
+    font: {
+        family: $font-family;
+        size: 12px;
+        weight: 300;
+    }
+    color: $subtext-color;
+}
+
+@mixin button-text {
+    font: {
+        family: $font-family;
+        size: 16px;
+        weight: 400;
+    }
+    color: $white;
+}
+
+@mixin button {
+    @include button-text;
+    padding: 4px 32px;
+    background-color: $accent;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    &:hover {
+        background-color: shade($accent, 10%);
+    }
+}
+
+@mixin input {
+    @include body-text;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    border: 1px solid $border;
+    padding: 8px 8px;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        border-color: $accent;
+    }
+}
+
+@mixin select-override {
+    .wrapper {
+        width: 100%;
+        .label {
+            display: none;
+        }
+        .selectTitle {
+            width: 100%;
+            border-radius: 5px;
+            border-color: $border;
+            padding: 8px 16px;
+            height: auto;
+            &:hover {
+                border-color: $accent;
+            }
+        }
+        .dropdown-content {
+            width: 100%;
+            min-width: unset;
+            .boxItemSelect {
+                width: 100%;
+                & >  div {
+                    width: 100%;
+                    &:hover {
+                        background-color: tint($accent, 50%) !important;
+                        border-radius: 0px;
+                    }
+                }
+            }
+        }
+        span::after {
+            border-color: $border;
+        }
+        &:hover > span:hover::after {
+            border-color: $accent !important;
+        }
+        
+    }
+}
+
+@mixin date-picker-override {
+    .date-picker-container {
+        top: 0;
+        .label {
+            display: none;
+        }
+        .date-picker-input-wrapper {
+            background-color: $white !important;
+            border: 1px solid $border;
+            padding: 0 4px!important;
+            i {
+                color: $border !important; 
+            }
+            input {
+                font-size: 14px !important;
+                padding-left: 0;
+            }
+        }
+        .date-picker-wrapper {
+            & > .months {
+                i {
+                    color: $border !important;
+                    &:hover {
+                        color: $accent !important;
+                    }
+                    &::selection {
+                        background-color: transparent;
+                        color: $accent !important;
+                    }
+                }
+                & > .month {
+                    background-color: $white !important;
+                    color: $text-color !important;
+                    border: 1px solid $border;
+                    padding: 4px 0 !important;
+                }
+            }
+            & >.day-labels {
+                & > .day-label-wrapper {
+                    color: $text-color !important;
+                }
+            }
+            & > .dates {
+                & > .date-item-wrapper {
+                    &.today-date {
+                        border-color: shade($accent,20%) !important;
+                    }
+                    &.current-date {
+                        border-color: shade($accent,20%) !important;
+                        background-color: $accent !important;
+                        color: $white !important;
+                    }
+                    &:hover {
+                        border-color: $accent !important;
+                    }
+                }
+            }
+        }
+    }
+}
