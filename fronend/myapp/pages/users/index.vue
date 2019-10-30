@@ -4,11 +4,6 @@
       <h1>ผู้ใช้ทั้งหมด</h1>
       <nuxt-link tag="button" :to="'/users/add_user'">เพิ่มผู้ใช้งาน</nuxt-link>
       <div class="input-group">
-
-        <!-- <div class="search-wrapper">
-          <input type="search" v-model="search" class="search" placeholder="ค้นหาชื่อผู้ใช้" />
-          <i class="material-icons">search</i>
-        </div> -->
       </div>
     </div>
     <div class="table-header">

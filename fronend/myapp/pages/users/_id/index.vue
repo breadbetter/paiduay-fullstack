@@ -3,23 +3,23 @@
       <form @submit.prevent="updateUser">
     <div>
       <div>ชื่อ</div>
-      <input v-model="user.first_name" type="text" />
+      <input v-model="users.first_name" type="text" />
     </div>
     <div>
       <div>นามสกุล</div>
-      <input v-model="user.last_name" type="text" />
+      <input v-model="users.last_name" type="text" />
     </div>
     <div>
       <div>อีเมล์</div>
-      <input v-model="user.email" type="text" />
+      <input v-model="users.email" type="text" />
     </div>
     <div>
       <div>เพศ</div>
-      <input v-model="user.gender" type="text" />
+      <input v-model="users.gender" type="text" />
     </div>
     <div>
       <div>อายุ</div>
-      <input v-model="user.age" type="number" />
+      <input v-model="users.age" type="number" />
     </div>
     <button type="submit" class="accept button">บันทึก</button>
     <nuxt-link tag="button" :to="'/users'">ยกเลิก</nuxt-link>
@@ -41,24 +41,24 @@ export default {
   },
   data() {
     return {
-      users: this.post
-        ? { ...this.post }
-        : {
-            first_name: "",
-            last_name: "",
-            email: "",
-            gender: "",
-            age: ""
-          }
-    };
+      users: {
+          first_name: "",
+          last_name: "",
+          email: "",
+          gender: "",
+          age: "",
+      }
+    }
   },
   methods: {
-    updateUser({ params }) {
-      axios.put(`http://localhost:8000/api/v1/${params.id}`,this.$route.params.id, this.post)
+    updateUser() {
+      console.log('response files : ', this.users)
+      axios.put(`http://localhost:8000/api/v1/${this.users.id}/`,this.users)
         .then(response => {
           console.log('response files : ', response)
+          
           alert("แก้ไขข้อมูลเรียบร้อยแล้ว");
-        //   this.$router.push("/product");
+          this.$router.push("/users");
         })
         .catch(err => {
           console.log("err", err);
@@ -66,12 +66,27 @@ export default {
         });
     }
   },
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      `http://localhost:8000/api/v1/${params.id}`
-    );
-    console.log("data ", data);
-    return { user: data };
-  }
+  mounted() {
+    const checkType = this.$route.params.id.split('=')
+    const type = checkType[0]
+    const value = checkType[1]
+    axios.get(
+      `http://localhost:8000/api/v1/${type}/${value}`
+    ).then(res => {
+        this.users = res.data
+        console.log("user", res.data)
+    }) 
+  },
+//   async asyncData({ params }) {
+//     const checkType = params.id.split('=')
+//     const type = checkType[0]
+//     const value = checkType[1]
+//     const { data } = await axios.get(
+//       `http://localhost:8000/api/v1/${type}/${value}`
+//     );
+//     // console.log("data ", this.users);
+//     // this.users = data
+//     return { user: data };
+//   }
 };
 </script>

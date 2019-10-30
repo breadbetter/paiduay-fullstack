@@ -4,14 +4,18 @@
         <div class="table-body">
             
             <div class="body">
-                <nuxt-link class="col" :to="'/users/' + id">  
+                <nuxt-link class="col" :to="'/users/id=' + id">  
                 <div class="col">{{id}}</div>
                 </nuxt-link>  
-                <nuxt-link class="col" :to="'/users/' + first_name"> 
+                <nuxt-link class="col" :to="'/users/firstname=' + first_name"> 
                 <div class="col">{{first_name}}</div>
                 </nuxt-link>  
+                <nuxt-link class="col" :to="'/users/lastname=' + last_name"> 
                 <div class="col">{{last_name}}</div>
+                </nuxt-link>  
+                <nuxt-link class="col" :to="'/users/email=' + email"> 
                 <div class="col">{{email}}</div>
+                </nuxt-link>  
                 <div class="col">{{gender}}</div>
                 <div class="col">{{age}}</div>
                 
