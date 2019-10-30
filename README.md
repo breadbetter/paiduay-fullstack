@@ -2,7 +2,7 @@
 
 > 
 
-## Build Setup in frontend folder
+## Build Setup project
 How to run frontend
 
 ``` bash
@@ -22,9 +22,10 @@ How to run backend
 
 $ cd backend_user 
 
-# start virtualenv, must be virtualenv in local
-$ env\Scripts\activate
+# start virtualenv, must be virtualenv in local. more detail https://virtualenv.pypa.io/en/latest/installation/
+$ env\Scripts\activate # see how to run env for more detail. https://virtualenv.pypa.io/en/latest/userguide/
 $ cd config
+
 # install dependencies
 $ pip install requirements.txt
 
@@ -33,4 +34,3 @@ $ python manage.py runserver
 
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
