@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     addUser() {
-      console.log("response files : ", this.users);
       axios
         .post(`http://localhost:8000/api/v1/`, this.users)
         .then(response => {

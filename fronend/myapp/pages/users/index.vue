@@ -48,7 +48,6 @@ export default {
     Users
   },
   data() {
-    // console.log("search ", search)
     return {
       users: null,
       search: ""
@@ -64,14 +63,12 @@ export default {
         })
         .then(res => {
           this.users = res.data;
-          console.log("users : ", this.users);
         });
     }
   },
   mounted() {
     axios.get(`http://localhost:8000/api/v1/`).then(res => {
       this.users = res.data;
-      console.log("users : ", this.users);
     });
   }
 };
